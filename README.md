@@ -23,7 +23,7 @@ _
 ![diagram](diagram.jpg)
 
 ## API
-- Google Map API: provide the nearby doctor information
+ Google Map API: provide the nearby doctor information
 
 ## Task Assignment:
 - Wanxuan Chen: Google map API, environment of App
