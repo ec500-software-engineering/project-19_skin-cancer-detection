@@ -12,3 +12,8 @@ This apllication serves for the some Skin Cancer patients and potential patients
 - Find an Implemented AI model.
 - Find dataset to train the AI model.
 - Find the API to provide the doctor information.
+
+## Technologies to be used
+- Tensorflow: Use For Machine Learning 
+- Kaggle: Find the dataset to use
+- Kivy：open source Python library for developing mobile apps
