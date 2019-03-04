@@ -17,3 +17,6 @@ This apllication serves for the some Skin Cancer patients and potential patients
 - Tensorflow: Use For Machine Learning 
 - Kaggle: Find the dataset to use
 - Kivy：open source Python library for developing mobile apps
+
+## API
+- Google Map API: provide the nearby doctor information
