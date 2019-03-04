@@ -20,3 +20,7 @@ This apllication serves for the some Skin Cancer patients and potential patients
 
 ## API
 - Google Map API: provide the nearby doctor information
+
+## Task Assignment:
+- Wanxuan Chen: Google map API, environment of App
+- Yucheng Zhu: Implemented AI moddule and dataset
