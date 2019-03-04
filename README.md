@@ -18,6 +18,10 @@ This apllication serves for the some Skin Cancer patients and potential patients
 - Kaggle: Find the dataset to use
 - Kivy：open source Python library for developing mobile apps
 
+## Project diagram
+_
+![result](result.png)
+
 ## API
 - Google Map API: provide the nearby doctor information
 
