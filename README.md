@@ -20,7 +20,7 @@ This apllication serves for the some Skin Cancer patients and potential patients
 
 ## Project diagram
 _
-![result](result.png)
+![diagram](diagram.jpg)
 
 ## API
 - Google Map API: provide the nearby doctor information
