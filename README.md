@@ -7,24 +7,35 @@ This apllication serves for the some Skin Cancer patients and potential patients
 
 - For the poential Skin patients, this app can detect their skin and give a feedback. Also it will provide a video base on the skin result to educate the user.
 
-## Defination of Sprint 1
+ Sprint 1
+ =========
 - Set up the environment of Android App.
 - Find an Implemented AI model.
 - Find dataset to train the AI model.
 - Find the API to provide the doctor information.
 
-## Technologies to be used
+ Technologies to be used
+ -------
 - Tensorflow: Use For Machine Learning 
 - Kaggle: Find the dataset to use
 - Kivy：open source Python library for developing mobile apps
 
-## Project diagram
+ Project diagram
+ ------
 _
 ![diagram](diagram.jpg)
 
-## API
+ API
+ -------
  Google Map API: provide the nearby doctor information
 
-## Task Assignment:
+ Task Assignment:
+ ------
 - Wanxuan Chen: Google map API, environment of App
 - Yucheng Zhu: Implemented AI moddule and dataset
+
+ Sprint 2
+ ==============
+ - Get the AI model trained and can classify single picture
+ - Set up the frame of Android App
+ 
