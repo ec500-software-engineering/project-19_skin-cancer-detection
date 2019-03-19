@@ -36,11 +36,9 @@ _
 
  Sprint 2
  ==============
- - Get the AI model trained and can classify single picture         
- 
+ - Get the AI model trained and can classify single picture  
  (training on the SCC)
  
- - Set up the frame of Android App                                 
- 
+ - Set up the frame of Android App  
  (completed)
  
