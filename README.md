@@ -22,7 +22,7 @@ This apllication serves for the some Skin Cancer patients and potential patients
 
  Project diagram
  ------
-_
+
 ![diagram](diagram.jpg)
 
  API
