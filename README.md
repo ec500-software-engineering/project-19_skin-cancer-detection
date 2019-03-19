@@ -36,6 +36,6 @@ _
 
  Sprint 2
  ==============
- - Get the AI model trained and can classify single picture
- - Set up the frame of Android App
+ - Get the AI model trained and can classify single picture         50/100
+ - Set up the frame of Android App                                 100/100
  
