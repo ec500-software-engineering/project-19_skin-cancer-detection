@@ -45,7 +45,7 @@ This apllication serves for the some Skin Cancer patients and potential patients
  - Then I tried to set some compile parameters, and it slower about 5 seconds. Finally I set the load_model function with compile = false, it the time reduce to 28 s.  
  - Finally, I tried to create model's weight json file, so that I can only load the weight file only when I predict. And it takes 29s. I think it's the best way for now though.    
  
- ![time](time.jpg)
+ ![time](time.png)
 
  Set up the frame of Android App  
  ----------
