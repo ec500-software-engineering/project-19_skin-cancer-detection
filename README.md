@@ -37,7 +37,7 @@ This apllication serves for the some Skin Cancer patients and potential patients
  Sprint 2
  ==============
  - Get the AI model trained and can classify single picture  
- (completed)
+ (completed).  
  However, found a drawback that it takes a little long to load the pretrained model, for now it takes about 29 seconds. 
  Try to fater the load model process, which takes 58s at first.
  First try to add K.clear_session() to.  
