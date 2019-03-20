@@ -42,8 +42,8 @@ This apllication serves for the some Skin Cancer patients and potential patients
  However, found a drawback that it takes a little long to load the pretrained model, for now it takes about 29 seconds. 
  Try to fater the load model process, which takes 58s at first.  
  - First try to add K.clear_session() to "Destroys the current TF graph and creates a new one.Useful to avoid clutter from old models / layers." but it doensn't work.   
- - Then I tried to set some compile parameters, and it slower about 5 seconds. Finally I set the load_model function with compile = false, it the time reduce to 28 s.  
- - Finally, I tried to create model's weight json file, so that I can only load the weight file only when I predict. And it takes 29s. I think it's the best way for now though.    
+ - Then I tried to set some compile parameters when I use "model = load_model(model.h5)" loading my model, and it got slower about 5 seconds. Finally I set the load_model function with "compile = false", and the time reduce to 28 s.  
+ - Finally, I tried to create model's weight in hdf5 type and convert model to json file, so that when I predict, I only need load the weight file and json file without loading the large model directly. And it takes 29s. I think it's the best way for now though.    
  
  ![time](time.png)
 
