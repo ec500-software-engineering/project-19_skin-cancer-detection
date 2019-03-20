@@ -38,13 +38,14 @@ This apllication serves for the some Skin Cancer patients and potential patients
  ==============
   Get the AI model trained and can classify single picture  
   -----
- (completed).  
+ (completed)  
  However, found a drawback that it takes a little long to load the pretrained model, for now it takes about 29 seconds. 
  Try to fater the load model process, which takes 58s at first.  
- -First try to add K.clear_session() to "Destroys the current TF graph and creates a new one.Useful to avoid clutter from old models / layers." but it doensn't work   
- -Then i tried to set some compile parameters, and it slower about 5 seconds. Finally i set the load_model function with compile = false, it the time reduce to 28 s.  
- -Finally, i tried to create model's weight json file, so that i can only load the weight file only when i predict. And it takes 29s. I think it's the best way for now though.
+ - First try to add K.clear_session() to "Destroys the current TF graph and creates a new one.Useful to avoid clutter from old models / layers." but it doensn't work.   
+ - Then i tried to set some compile parameters, and it slower about 5 seconds. Finally i set the load_model function with compile = false, it the time reduce to 28 s.  
+ - Finally, i tried to create model's weight json file, so that i can only load the weight file only when i predict. And it takes 29s. I think it's the best way for now though.    
+ 
  Set up the frame of Android App  
- ------
+ ----------
  (completed)
  
