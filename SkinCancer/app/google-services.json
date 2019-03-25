@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "880855546845",
+    "firebase_url": "https://skincancer-d0869.firebaseio.com",
+    "project_id": "skincancer-d0869",
+    "storage_bucket": "skincancer-d0869.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880855546845:android:1374409f1b3b5878",
+        "android_client_info": {
+          "package_name": "com.example.skincancer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880855546845-1eji4ath7ab5ofdnfikvl3fd4ccg6orq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.skincancer",
+            "certificate_hash": "1067d97710d8eab31638bfc17f2d0fd475e81c10"
+          }
+        },
+        {
+          "client_id": "880855546845-sr143unhc7gj69cq37o8ud70qhl0arm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKD5jefO_03_8f_2UNd1iqr2InhXJ85xo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880855546845-sr143unhc7gj69cq37o8ud70qhl0arm9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
