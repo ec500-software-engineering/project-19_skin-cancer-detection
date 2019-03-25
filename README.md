@@ -29,7 +29,7 @@ This apllication serves for the some Skin Cancer patients and potential patients
  -------
  Google Map API: provide the nearby doctor information
 
- Task Assignment:
+ Task Assignment:diagram.jpg
  ------
 - Wanxuan Chen: Google map API, environment of App
 - Yucheng Zhu: Implemented AI moddule and dataset
@@ -55,7 +55,9 @@ This apllication serves for the some Skin Cancer patients and potential patients
  
  - The App can take pictures from camera and local gallery as test material. 
  
- ![diagram](diagram.jpg)
+ ![WechatIMG1](WechatIMG1.png)
  
  - Moreover, the app connect to google map Api and can show the nearby doctor and phramacy.
+ 
+  ![WechatIMG2](WechatIMG2.png)
  
