@@ -51,4 +51,11 @@ This apllication serves for the some Skin Cancer patients and potential patients
  Set up the frame of Android App  
  ----------
  (completed)
+ The app bulid on the Android Studio. Currently, the basic framework of app is complete. 
+ 
+ - The App can take pictures from camera and local gallery as test material. 
+ 
+ ![diagram](diagram.jpg)
+ 
+ - Moreover, the app connect to google map Api and can show the nearby doctor and phramacy.
  
