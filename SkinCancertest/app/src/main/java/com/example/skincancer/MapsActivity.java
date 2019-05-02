@@ -262,7 +262,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         googlePlaceUrl.append("&radius="+PROXIMITY_RADIUS);
         googlePlaceUrl.append("&type="+nearbyPlace);
         googlePlaceUrl.append("&sensor=true");
-        googlePlaceUrl.append("&key="+"AIzaSyC6kxNZaTvJNpW-ay6aqA6AwB6rrcqaL-w");
+        googlePlaceUrl.append("&key="+"");
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
