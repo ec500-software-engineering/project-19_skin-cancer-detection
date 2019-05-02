@@ -61,3 +61,11 @@ This apllication serves for the some Skin Cancer patients and potential patients
  
   ![WechatIMG2](WechatIMG2.png)
  
+ Sprint 3
+ ==============
+ Tried different implementation of models.
+ 
+ To get the best performance, we tried three kinds of model: 1.keras 2.Tensorflow lite 3.mobile net 4.tensorflow
+ 
+ After we choose keras model, we found the model's size is too big to implement into mobile, like we mentioned in sprint2. And then we choose the Tensorflow lite to make the model smaller. After transform, the size decrease to 200MB compared with 650MB. However, when we want to implement the model into app, we found we don't have too much tutorial to follow since TF-lite just came out last year.
+ 
