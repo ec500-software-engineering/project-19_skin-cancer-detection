@@ -1,52 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:id="@+id/drawer_layout"
+    tools:openDrawer="start">
 
-    <com.google.android.youtube.player.YouTubePlayerView
-        android:id="@+id/youtubePlay"
+    <fragment
+        android:id="@+id/youtube_fragment"
+        android:name="com.google.android.youtube.player.YouTubePlayerFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <Button
-            android:id="@+id/btnPlay"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true"
-            android:background="@color/colorPrimary"
-            android:text="Play"
-            />
-        <Button
-            android:id="@+id/btnCure"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_toLeftOf="@id/btnPlay"
-            android:layout_above="@id/btnPlay"
-            android:background="@color/colorPrimary"
-            android:text="Cure Video"
-            />
-        <Button
-            android:id="@+id/btnPrevent"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_toRightOf="@id/btnPlay"
-            android:layout_above="@id/btnPlay"
-            android:background="@color/colorPrimary"
-            android:text="Prevent Video"
-            />
+        android:layout_height="500dp" />
 
 
 
-    ></RelativeLayout>
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
 
-
-
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">SkinCancer</string>
     <string name="tv_test">Vansoncc</string>
-    <string name="google_maps_Api_key">Vansoncc</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 
 </resources>

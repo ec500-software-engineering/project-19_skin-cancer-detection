@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.camera2" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -28,12 +27,20 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".MapsActivity"></activity>
-        <activity android:name=".YoutubeActivity"></activity>
-        <activity android:name=".DetectActivity"></activity>
+        <activity android:name=".WebViewActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".AboutUs"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MapsActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".YoutubeActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".DetectActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

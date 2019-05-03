@@ -1,13 +1,22 @@
 package com.example.skincancer;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wonderkiln.camerakit.CameraKitError;
 import com.wonderkiln.camerakit.CameraKitEvent;
@@ -20,7 +29,7 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class DetectActivity extends AppCompatActivity {
+public class DetectActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 //    private static final int INPUT_SIZE = 224;
 //    private static final int IMAGE_MEAN = 117;
@@ -46,6 +55,8 @@ public class DetectActivity extends AppCompatActivity {
     private Button btnDetectObject, btnToggleCamera;
     private ImageView imageViewResult;
     private CameraView cameraView;
+    private DrawerLayout drawer;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +117,15 @@ public class DetectActivity extends AppCompatActivity {
         });
 
         initTensorFlowAndLoadModel();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar );
+        drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -160,5 +180,41 @@ public class DetectActivity extends AppCompatActivity {
                 btnDetectObject.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home:
+                Intent home_intent = new Intent(DetectActivity.this, MainActivity.class);
+                startActivity(home_intent);
+                break;
+            case R.id.nav_map:
+                Intent map_intent = new Intent(DetectActivity.this, MapsActivity.class);
+                startActivity(map_intent);
+                break;
+            case R.id.nav_video:
+                Intent video_intent = new Intent(DetectActivity.this, YoutubeActivity.class);
+                startActivity(video_intent);
+                break;
+            case R.id.nav_detect:
+                Intent detect_intent = new Intent(DetectActivity.this, DetectActivity.class);
+                startActivity(detect_intent);
+                break;
+            case R.id.nav_about:
+                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

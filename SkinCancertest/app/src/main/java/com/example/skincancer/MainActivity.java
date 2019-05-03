@@ -11,13 +11,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.content.FileProvider;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -31,12 +39,14 @@ import java.util.concurrent.Executors;
 import static android.os.Environment.getExternalStoragePublicDirectory;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     ImageView image;
     Integer REQUEST_CAMERA=1, SELECT_FILE=0, REQUEST_MAP=2;
     Button btnCamera, btnGallery, btnMap, btnVideo, btnDetectObject;
     File photoFile =null;
     String pathtoFile;
+    private DrawerLayout drawer;
+    NavigationView navigationView;
     private static final int INPUT_SIZE = 224;
     private static final int IMAGE_MEAN = 117;
     private static final float IMAGE_STD = 1;
@@ -62,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         pd=new ProgressDialog(MainActivity.this);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-//        textViewResult = findViewById(R.id.textView);
-//        textViewResult.setMovementMethod(new ScrollingMovementMethod());
         setContentView(R.layout.activity_main);
         image = (ImageView) findViewById(R.id.image);
         btnCamera =(Button) findViewById(R.id.btnCamera);
@@ -97,49 +105,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
-
-//        btnDetectObject.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Image.();
-//                pd.setMessage("Loading");
-//                pd.setCancelable(false);
-//                pd.show();
-//
-//            }
-//        });
-//        initTensorFlowAndLoadModel();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar );
+        drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
-//
-//    private void initTensorFlowAndLoadModel() {
-//        executor.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    classifier = TensorFlowImageClassifier.create(
-//                            getAssets(),
-//                            MODEL_FILE,
-//                            LABEL_FILE,
-//                            INPUT_SIZE,
-//                            IMAGE_MEAN,
-//                            IMAGE_STD,
-//                            INPUT_NAME,
-//                            OUTPUT_NAME);
-//                    makeButtonVisible();
-//                } catch (final Exception e) {
-//                    throw new RuntimeException("Error initializing TensorFlow!", e);
-//                }
-//            }
-//        });
-//    }
-//    private void makeButtonVisible() {
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                btnDetectObject.setVisibility(View.VISIBLE);
-//            }
-//        });
-//    }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home:
+                Intent home_intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(home_intent);
+                break;
+            case R.id.nav_map:
+                Intent map_intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(map_intent);
+                break;
+            case R.id.nav_video:
+                Intent video_intent = new Intent(MainActivity.this, YoutubeActivity.class);
+                startActivity(video_intent);
+                break;
+            case R.id.nav_detect:
+                Intent detect_intent = new Intent(MainActivity.this, DetectActivity.class);
+                startActivity(detect_intent);
+                break;
+            case R.id.nav_about:
+                Intent about_intent = new Intent(MainActivity.this, AboutUs.class);
+                startActivity(about_intent);
+                Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
 
     public void onClick(View view){
@@ -219,8 +223,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
 
 }
