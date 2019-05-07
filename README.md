@@ -73,7 +73,7 @@ This apllication serves for the some Skin Cancer patients and potential patients
  
 Then we tried the mobile net as our model. This model has good fearure on size by using Depthwise Conv decreasing the number of parameters and calculations. However the model we found for skin cancer doesn't give a right result when we  do the prediction and return one label all the time, so we pass this choice either.
 
-Finally we chose tensorflow model, the .pb file. It's much easier than tflite to implement on android, and it's much smaller than Resnet (83.4MB compared with 650MB). And it's incredible fast to predict images on phone, bravoo!
+Finally we chose tensorflow model, the .pb file. It's much easier than tflite to implement on android, and it's much smaller than Resnet (83.4MB compared with 650MB). And it's incredible fast to predict images on phone, bravo!
 
  Sprint 4
  ==============
