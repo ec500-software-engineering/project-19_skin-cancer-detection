@@ -77,4 +77,4 @@ Finally we chose tensorflow model, the .pb file. It's much easier than tflite to
 
  Sprint 4
  ==============
- 
+ In this sprint, we implement our model with our android phone by using android studio.
