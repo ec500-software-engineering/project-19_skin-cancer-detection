@@ -29,11 +29,11 @@
 
         <Button
             android:id="@+id/btnDermatologist"
-            android:layout_marginTop="50dp"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:onClick="onClick"
+            android:layout_marginTop="50dp"
             android:background="@color/colorPrimary"
+            android:onClick="onClick"
             android:text="Dermatologist" />
 
         <Button
@@ -70,20 +70,18 @@
 
         <EditText
             android:id="@+id/txtPlace"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
             android:background="@drawable/white_border"
+            android:ems="10"
             android:inputType="textPersonName"
             android:textColorLink="@color/colorPrimary"
             tools:text="Place to find..." />
 
         <Button
             android:id="@+id/btnSearch"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="onClick"
             android:text="search" />
     </LinearLayout>

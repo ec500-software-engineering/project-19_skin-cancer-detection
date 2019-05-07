@@ -38,7 +38,8 @@
         <com.wonderkiln.camerakit.CameraView
             android:id="@+id/cameraView"
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="300dp"
+            />
 
 
     </LinearLayout>
@@ -67,30 +68,59 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:paddingTop="500dp"
         >
-        <Button
-            android:id="@+id/btnToggleCamera"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/colorPrimary"
-            android:layout_centerHorizontal="true"
-            android:text="ToggleCamera"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            >
 
-        <Button
-            android:id="@+id/btnDetectObject"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/colorPrimary"
-            android:text="DetectObject"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:visibility="gone" />
+            <Button
+                android:id="@+id/btnToggleCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_toggle"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnToggleCamera"
+                android:text="Toggle Camera"
+                android:fontFamily="sans-serif"
+
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="50dp">
+            <Button
+                android:id="@+id/btnDetectObject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_fangdajing"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnDetectObject"
+                android:text="Test Skin"
+                android:fontFamily="sans-serif"
+                />
+        </RelativeLayout>
+
+
+
+
     </LinearLayout>
 
 

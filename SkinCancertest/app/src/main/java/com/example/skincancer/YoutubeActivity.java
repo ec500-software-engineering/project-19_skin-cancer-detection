@@ -123,6 +123,8 @@ public class YoutubeActivity extends AppCompatActivity implements YouTubePlayer.
                 startActivity(detect_intent);
                 break;
             case R.id.nav_about:
+                Intent about_intent = new Intent(this, AboutUs.class);
+                startActivity(about_intent);
                 Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -157,7 +159,8 @@ public class YoutubeActivity extends AppCompatActivity implements YouTubePlayer.
 //            }
 //        });
         videoList.add("orLyV2qPdvA");
-        videoList.add("Ky2fBbXZ71I");
+        videoList.add("wEG7BglBuYg");
+        videoList.add("-O3fLMg6qwQ");
         youTubePlayer.loadVideos(videoList);
 
     }

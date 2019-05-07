@@ -77,7 +77,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(MapsActivity.this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar );
         drawer = findViewById(R.id.drawer_layout);
@@ -114,12 +114,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onMapReady: map is ready");
         mMap = googleMap;
-        getDeviceLocation();
+//        if(mLocationPermissionsGranted){
+//            getDeviceLocation();
+//            if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)
+//            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+//                    Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
+//                return;
+//            }
+//        }
         //mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE //changes the type of map
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             bulidGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
+        getDeviceLocation();
 
     }
 
@@ -138,12 +146,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         if(task.isSuccessful()){
                             Log.d(TAG, "onComplete: found location!");
                             Location currentLocation = (Location) task.getResult();
-
+                            LatLng latLng = new LatLng(currentLocation.getLatitude() , currentLocation.getLongitude());
+//                            System.out.println("!!!");
+//                            System.out.println(currentLocation.getLatitude());
+//                            System.out.println(currentLocation.getLongitude());
+//                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-                                    DEFAULT_ZOOM);
+                                    DEFAULT_ZOOM,"My Location");
 
                         }else{
                             Log.d(TAG, "onComplete: current location is null");
+                            moveCamera(new LatLng(42.364506, -71.038887),
+                                    DEFAULT_ZOOM,"My Location");
                             Toast.makeText(MapsActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -152,7 +166,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }catch (SecurityException e){
             Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage() );
         }
+
     }
+
 
     protected synchronized void bulidGoogleApiClient() {
         client = new GoogleApiClient.Builder(this)
@@ -164,9 +180,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         client.connect();
     }
 
-    private void moveCamera(LatLng latLng, float zoom){
+
+
+    private void moveCamera(LatLng latLng, float zoom, String title){
         Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+        if(!title.equals("My Location")){
+            MarkerOptions options = new MarkerOptions()
+                    .position(latLng)
+                    .title(title);
+            mMap.addMarker(options);
+        }
+
+        hideSoftKeyboard();
     }
 
     @Override
@@ -233,7 +259,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.btnDermatologist: {
 
                 mMap.clear();
-                String Dermatologist = "restaurant";
+                String Dermatologist = "dermatologist";
                 String url = getUrl(latitude, longitude, Dermatologist);
 
                 dataTransfer[0] = mMap;
@@ -316,6 +342,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         else {
             return true;
+
         }
     }
 
@@ -352,6 +379,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 startActivity(detect_intent);
                 break;
             case R.id.nav_about:
+                Intent about_intent = new Intent(this, AboutUs.class);
+                startActivity(about_intent);
                 Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
                 break;
         }

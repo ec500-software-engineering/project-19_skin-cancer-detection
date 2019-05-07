@@ -1,19 +1,16 @@
 package com.example.skincancer;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.content.FileProvider;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,6 +20,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String pathtoFile;
     private DrawerLayout drawer;
     NavigationView navigationView;
+    ImageButton wiki;
     private static final int INPUT_SIZE = 224;
     private static final int IMAGE_MEAN = 117;
     private static final float IMAGE_STD = 1;
@@ -73,30 +72,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pd=new ProgressDialog(MainActivity.this);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         setContentView(R.layout.activity_main);
-        image = (ImageView) findViewById(R.id.image);
-        btnCamera =(Button) findViewById(R.id.btnCamera);
-        if(Build.VERSION.SDK_INT>23){
-            requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_CAMERA);
-        }
-        btnVideo =(Button) findViewById(R.id.btnVideo);
-        btnVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, YoutubeActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnCamera.setOnClickListener(this);
-        btnGallery=(Button) findViewById(R.id.btnGallery);
-        btnGallery.setOnClickListener(this);
-        btnMap=(Button) findViewById(R.id.btnMap);
-        btnMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
+//        image = (ImageView) findViewById(R.id.image);
+//        btnCamera =(Button) findViewById(R.id.btnCamera);
+//        if(Build.VERSION.SDK_INT>23){
+//            requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_CAMERA);
+//        }
+//        btnVideo =(Button) findViewById(R.id.btnVideo);
+//        btnVideo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, YoutubeActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//        btnCamera.setOnClickListener(this);
+//        btnGallery=(Button) findViewById(R.id.btnGallery);
+//        btnGallery.setOnClickListener(this);
+//        btnMap=(Button) findViewById(R.id.btnMap);
+//        btnMap.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         btnDetectObject=(Button) findViewById(R.id.btnDetectObject);
         btnDetectObject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +113,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toggle.syncState();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        wiki = (ImageButton) findViewById(R.id.wiki);
+        wiki.setOnClickListener(this);
     }
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -147,32 +148,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void onClick(View view){
+        Intent i = new Intent(view.getContext(), WebViewActivity.class);
         switch (view.getId()){
-            case R.id.btnCamera:
-                Intent iCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if(iCamera.resolveActivity(getPackageManager())!=null){
+//            case R.id.btnCamera:
+//                Intent iCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                if(iCamera.resolveActivity(getPackageManager())!=null){
+//
+//                    photoFile = createPhotoFile();
+//                    if(photoFile!=null){
+//                        pathtoFile = photoFile.getAbsolutePath();
+//                        Uri photoURI = FileProvider.getUriForFile(MainActivity.this,"com.example.skincancer.fileprovider",photoFile);
+//                        iCamera.putExtra(MediaStore.EXTRA_OUTPUT,photoURI);
+//                        startActivityForResult(iCamera,REQUEST_CAMERA);
+//
+//                    }
+//                }
+//                break;
+//            case R.id.btnGallery:
+//                Intent iGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                iGallery.setType("image/*");
+//                startActivityForResult(iGallery,SELECT_FILE);
+//                break;
 
-                    photoFile = createPhotoFile();
-                    if(photoFile!=null){
-                        pathtoFile = photoFile.getAbsolutePath();
-                        Uri photoURI = FileProvider.getUriForFile(MainActivity.this,"com.example.skincancer.fileprovider",photoFile);
-                        iCamera.putExtra(MediaStore.EXTRA_OUTPUT,photoURI);
-                        startActivityForResult(iCamera,REQUEST_CAMERA);
+            case R.id.wiki:{
+                i.putExtra("link", "https://en.wikipedia.org/wiki/Skin_cancer");
+                break;
+            }
 
-                    }
-                }
-                break;
-            case R.id.btnGallery:
-                Intent iGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                iGallery.setType("image/*");
-                startActivityForResult(iGallery,SELECT_FILE);
-                break;
 
 //            case R.id.map:
 //                Intent intent = new Intent(MainActivity.this,MapsActivity.class);
 //                startActivity(intent);
 
         }
+        startActivity(i);
+
 
     }
 

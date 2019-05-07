@@ -52,7 +52,7 @@ public class DetectActivity extends AppCompatActivity implements NavigationView.
     private Classifier classifier;
     private Executor executor = Executors.newSingleThreadExecutor();
     private TextView textViewResult;
-    private Button btnDetectObject, btnToggleCamera;
+    private Button  btnToggleCamera, btnDetectObject;
     private ImageView imageViewResult;
     private CameraView cameraView;
     private DrawerLayout drawer;
@@ -91,8 +91,71 @@ public class DetectActivity extends AppCompatActivity implements NavigationView.
                 imageViewResult.setImageBitmap(bitmap);
 
                 final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
+                String testresult = "";
+                float precent = 0;
+                System.out.println(results);
 
-                textViewResult.setText(results.toString());
+                if (results.size()==1){
+                    if(results.get(0).getTitle().equals("melanoma")){
+
+                        if(results.get(0).getConfidence()>0.7){
+                            precent =results.get(0).getConfidence()*100;
+                            testresult = precent +"% Probability Melanoma, FIND A DOCTOR!!";
+                        }
+                        else if(results.get(1).getConfidence()<0.7 && results.get(1).getConfidence()>=0.5){
+                            precent =results.get(1).getConfidence()*100;
+                            testresult = precent +"% Probability Melanoma, Need Care! ";
+                        }
+                        else {
+                            precent =results.get(1).getConfidence()*100;
+                            testresult = precent +"% Probability Melanoma, Your Skin Look Health~ ";
+                        }
+
+                    }
+                    else {
+                        if(results.get(0).getConfidence()<0.3){
+                            precent =results.get(0).getConfidence()*100;
+                            testresult = precent +"% Probability Melanoma, FIND A DOCTOR!!";
+                        }
+                        else if(results.get(0).getConfidence()>0.3 && results.get(0).getConfidence()<0.5){
+                            precent =results.get(0).getConfidence()*100;
+                            testresult = precent +"% Probability Melanoma, Need Care! ";
+                        }
+                        else {
+                            precent =results.get(0).getConfidence()*100;
+                            testresult = precent +"% Probability Melanoma, Your Skin Look Health~ ";
+                        }
+
+                    }
+
+                }
+                else{
+                    if(results.get(1).getConfidence()>0.7){
+                        precent =results.get(1).getConfidence()*100;
+                        testresult = precent +"% Probability Melanoma, FIND A DOCTOR!!";
+                    }
+                    else if(results.get(1).getConfidence()<0.7 && results.get(1).getConfidence()>=0.5){
+                        precent =results.get(1).getConfidence()*100;
+                        testresult = precent +"% Probability Melanoma, Need Care! ";
+                    }
+                    else {
+                        precent =results.get(1).getConfidence()*100;
+                        testresult = precent +"% Probability Melanoma, Your Skin Look Health~ ";
+                    }
+                }
+//                if(results.get(1).getConfidence()>0.7){
+//                    precent =results.get(1).getConfidence()*100;
+//                    testresult = precent +"% Probability Melanoma, FIND A DOCTOR!!";
+//                }
+//                else if(results.get(1).getConfidence()<0.7 && results.get(1).getConfidence()>=0.5){
+//                    precent =results.get(1).getConfidence()*100;
+//                    testresult = precent +"% Probability Melanoma, Need Care! ";
+//                }
+//                else {
+//                    precent =results.get(1).getConfidence()*100;
+//                    testresult = precent +"% Probability Melanoma, Your Skin Look Health~ ";
+//                }
+                textViewResult.setText(testresult);
 
             }
 
@@ -201,7 +264,9 @@ public class DetectActivity extends AppCompatActivity implements NavigationView.
                 startActivity(detect_intent);
                 break;
             case R.id.nav_about:
-                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                Intent about_intent = new Intent(this, AboutUs.class);
+                startActivity(about_intent);
+                Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
                 break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
