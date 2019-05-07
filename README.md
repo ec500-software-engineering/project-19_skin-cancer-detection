@@ -65,7 +65,16 @@ This apllication serves for the some Skin Cancer patients and potential patients
  ==============
  Tried different implementation of models.
  
- To get the best performance, we tried three kinds of model: 1.keras 2.Tensorflow lite 3.mobile net 4.tensorflow
+ To get the best performance, we tried three kinds of model: 1.keras(resnet inception v2) 2.Tensorflow lite 3.mobile net 4.tensorflow
  
- After we choose keras model, we found the model's size is too big to implement into mobile, like we mentioned in sprint2. And then we choose the Tensorflow lite to make the model smaller. After transform, the size decrease to 200MB compared with 650MB. However, when we want to implement the model into app, we found we don't have too much tutorial to follow since TF-lite just came out last year.
+ After we choose keras model, we found the model's size is too big to implement into mobile, like we mentioned in sprint2. To figure out why it was so big, we first try to train with small dataset, but the model's size didn't change much. Then we decrease the number of labels from 7 to 2, the result is same. Finally, by searching resource we found out it's because of the resnet inception v2's structure is so big, about 152 layers. 
+ 
+ And then we choose the Tensorflow lite to make the model smaller. After transform, the size decrease to 200MB compared with 650MB. However, when we want to implement the model into app, we found we don't have too much tutorial to follow since TF-lite just came out last year.
+ 
+Then we tried the mobile net as our model. This model has good fearure on size by using Depthwise Conv decreasing the number of parameters and calculations. However the model we found for skin cancer doesn't give a right result when we  do the prediction and return one label all the time, so we pass this choice either.
+
+Finally we chose tensorflow model, the .pb file. It's much easier than tflite to implement on android, and it's much smaller than Resnet (83.4MB compared with 650MB). And it's incredible fast to predict images on phone, bravoo!
+
+ Sprint 4
+ ==============
  
